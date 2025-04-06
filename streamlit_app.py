@@ -26,6 +26,12 @@ if not st.session_state.quiz_started:
         st.session_state.quiz_started = True
 
 # --- QUIZ PAGE ---
+homebody = 0
+work = 0
+exercise = 0
+fashion = 0
+hippers = 0
+sundays = 0
 if st.session_state.quiz_started:
     st.title("Smiski Personality Quiz")
 
@@ -80,8 +86,7 @@ if st.session_state.quiz_started:
            "Justin Bieber and Selena Gomez",
            "Ronaldo and Georgina",
            "Taylor Swift and Travis Kelce",
-           "Tom Holland and Zendaya"
-       ])
+           "Tom Holland and Zendaya" ])
 
     selected_q7 = st.selectbox(
        "Pick a snack!",
@@ -127,112 +132,133 @@ if st.session_state.quiz_started:
         hippers = 0
         sundays = 0
 
-    # Q1
-    if selected_q1 == 'I enjoy reading a book or watching TV without distractions.':
-        homebody += 1
-    elif selected_q1 == 'I might spend time cooking or doing a hobby to unwind.':
-        sundays += 1
-    elif selected_q1 == 'I spend time scrolling through social media or watching videos on my phone.':
-        hippers += 1
-    else:
-        work += 1
+        # Q1
+        if selected_q1 == 'I enjoy reading a book or watching TV without distractions.':
+            homebody += 1
+        elif selected_q1 == 'I might spend time cooking or doing a hobby to unwind.':
+            sundays += 1
+        elif selected_q1 == 'I spend time scrolling through social media or watching videos on my phone.':
+            hippers += 1
+        elif selected_q1 == 'I spend time reflecting, journaling, or planning for the next day.':
+            work += 1
 
-    # Q2
-    if selected_q2 == 'I like to work on my to do list and get some chores or work done.':
-        work += 1
-    elif selected_q2 == 'I might go shopping or do some online shopping.':
-        fashion += 1
-    elif selected_q2 == 'I usually go for a run, hit the gym, or do something active to relieve stress.':
-        exercise += 1
-    else:
-        homebody += 1
+        # Q2
+        if selected_q2 == 'I like to work on my to do list and get some chores or work done.':
+            work += 1
+        elif selected_q2 == 'I might go shopping or do some online shopping.':
+            fashion += 1
+        elif selected_q2 == 'I usually go for a run, hit the gym, or do something active to relieve stress.':
+            exercise += 1
+        elif selected_q2 == 'I relax and do nothing—preferably on the couch or in bed.':
+            homebody += 1
 
-    # Q3
-    if selected_q3 == 'I like to take a break and practice a hobby.':
-        sundays += 1
-    elif selected_q3 == 'I might spend some time on TikTok.':
-        hippers += 1
-    elif selected_q3 == 'I like to go to the gym, take a fitness class, or even take a walk.':
-        exercise += 1
-    else:
-        work += 1
+        # Q3
+        if selected_q3 == 'I like to take a break and practice a hobby.':
+            sundays += 1
+        elif selected_q3 == 'I might spend some time on TikTok.':
+            hippers += 1
+        elif selected_q3 == 'I like to go to the gym, take a fitness class, or even take a walk.':
+            exercise += 1
+        elif selected_q3 == 'I usually just power through the stress without doing much about it.':
+            work += 1
 
-    # Q4
-    if selected_q4 == 'I spend a good amount of time selecting an outfit that expresses my style and makes me feel confident.':
-        fashion += 1
+        # Q4
+        if selected_q4 == 'I spend a good amount of time selecting an outfit that expresses my style and makes me feel confident.':
+            fashion += 1
+
+        # Q5
+        if selected_q5 == 'A soccer game':
+            exercise += 1
+        elif selected_q5 == 'Anyone but You':
+            homebody += 1
+        elif selected_q5 == 'The Office':
+            work += 1
+        elif selected_q5 == 'Clueless':
+            fashion += 1
+
+        # Q6
+        if selected_q6 == 'Justin Bieber and Selena Gomez':
+            hippers += 1
+        elif selected_q6 == 'Ronaldo and Georgina':
+            exercise += 1
+        elif selected_q6 == 'Taylor Swift and Travis Kelce':
+            sundays += 1
+        elif selected_q6 == 'Tom Holland and Zendaya':
+            homebody += 1
+
+        # Q7
+        if selected_q7 == 'Almonds':
+            work += 1
+        elif selected_q7 == 'Raspberries':
+            sundays += 1
+        elif selected_q7 == 'Chips':
+            hippers += 1
+        elif selected_q7 == 'Acai bowl':
+            fashion += 1
+
+        # Q8
+        if selected_q8 == 'Stitch':
+            sundays += 1
+        elif selected_q8 == 'Maui':
+            exercise += 1
+        elif selected_q8 == 'Vanellope':
+            fashion += 1
+        elif selected_q8 == 'Olaf':
+            homebody += 1
+
+        # Q9
+        if selected_q9 == 'Balancing things':
+            work += 1
+        elif selected_q9 == 'Being consistent':
+            sundays += 1
+        elif selected_q9 == 'Focusing':
+            hippers += 1
+        elif selected_q9 == 'Sewing':
+            fashion += 1
+
+        # Q10
+        if selected_q10 == 'Working out':
+            exercise += 1
+        elif selected_q10 == 'Sleeping':
+            homebody += 1
+        elif selected_q10 == 'Baking':
+            sundays += 1
+        elif selected_q10 == 'Doing a puzzle':
+            work += 1
+
+        # Determine top trait
+        scores = {
+            "Homebody": homebody,
+            "Sunday": sundays,
+            "Phone": hippers,
+            "Work": work,
+            "Fashion": fashion,
+            "Exercise": exercise
+        }
+
+        top_trait = max(scores, key=scores.get)
+
+        # Result output
+        st.write(f"Thanks for completing the quiz! 💫 Your Smiski is: **{top_trait}**")
+
+        if top_trait == 'Fashion':
+            st.image('https://smiski.com/e/wp-content/uploads/2022/10/img_sweater.png')
+        elif top_trait == 'Exercise':
+            st.image('https://smiski.com/e/wp-content/uploads/2023/05/img_dumbbell.png')
+        elif top_trait == 'Work':
+            st.image('https://smiski.com/wp-content/uploads/2022/02/img_work_products_03.png')
+        elif top_trait == 'Sunday':
+            st.image('https://smiski.com/e/wp-content/uploads/2025/02/img_product_sunday05.png')
+        elif top_trait == 'Homebody':
+            st.image('https://smiski.com/e/wp-content/uploads/2019/07/img_bed_products_05.png')
+        else:
+            st.image('https://smiski.com/e/wp-content/uploads/2024/09/hippers_01.png')
 
 
-    # Q5
-    if selected_q5 == 'A soccer game':
-        exercise += 1
-    elif selected_q5 == 'Anyone but You':
-        homebody += 1
-    elif selected_q5 == 'The Office':
-        work += 1
-    else:
-        fashion += 1
 
-    # Q6
-    if selected_q6 == 'Justin Bieber and Selena Gomez':
-        work += 1
-    elif selected_q6 == 'Ronaldo and Georgina':
-        exercise += 1
-    elif selected_q6 == 'Taylor Swift and Travis Kelce':
-        sundays += 1
-    else:
-        homebody += 1
 
-    # Q7
-    if selected_q7 == 'Almonds':
-        work += 1
-    elif selected_q7 == 'Raspberries':
-        sundays += 1
-    elif selected_q7 == 'Chips':
-        hippers += 1
-    else:
-        fashion += 1
 
-    # Q8
-    if selected_q8 == 'Stitch':
-        sundays += 1
-    elif selected_q8 == 'Maui':
-        exercise += 1
-    elif selected_q8 == 'Vanellope':
-        fashion += 1
-    else:
-        homebody += 1
 
-    # Q9
-    if selected_q9 == 'Balancing things':
-        work += 1
-    elif selected_q9 == 'Being consistent':
-        sundays += 1
-    elif selected_q9 == 'Focusing':
-        hippers += 1
-    else:
-        fashion += 1
 
-    # Q10
-    if selected_q10 == 'Working out':
-        exercise += 1
-    elif selected_q10 == 'Sleeping':
-        homebody += 1
-    elif selected_q10 == 'Baking':
-        sundays += 1
-    else:
-        work += 1
 
-    
-    scores = {
-        "Homebody": homebody,
-        "Sunday": sundays,
-        "Hippers": hippers,
-        "Work": work,
-        "Fashion": fashion,
-        "Exercise": exercise
-    }
-
-    top_trait = max(scores, key=scores.get)
-
-    st.write(f"Thanks for completing the quiz! Your Smiski is: " + top_trait)
 
