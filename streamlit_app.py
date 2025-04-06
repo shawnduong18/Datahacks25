@@ -9,7 +9,7 @@ if "quiz_started" not in st.session_state:
 
 # --- START PAGE ---
 if not st.session_state.quiz_started:
-    st.title("What smiski are you?")
+    st.title("What Smiski are you?")
     st.markdown(
         """ 
         Over the last year, Smiski collectables have gone viral and we can totally see why!  
